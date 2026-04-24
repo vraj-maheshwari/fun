@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8" />
+  <title>Redirecting...</title>
+
   <script>
+    // Save the full path (/xyz, /rahul, etc.)
     sessionStorage.setItem("path", window.location.pathname);
+
+    // Redirect to homepage so index.html loads
     window.location.replace("/fun/");
   </script>
 </head>
-<body></body>
+
+<body>
+  <p>Redirecting...</p>
+</body>
 </html>
