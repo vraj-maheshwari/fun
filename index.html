@@ -232,33 +232,42 @@
   <footer>Made with 💕 and code</footer>
 
   <script>
-    // --- Personalized message from URL ---
-    let name;
-    const path = window.location.pathname.split('/');
-    name = decodeURIComponent(path[path.length - 1] || '').trim();
+  // --- Personalized message from URL ---
+  let name = "";
 
-    // If no name in path, check query parameter (?name=xyz)
-    if (!name) {
-      const params = new URLSearchParams(window.location.search);
-      name = params.get("name");
-    }
+  // 1. Try getting name from URL path (/xyz)
+  const path = window.location.pathname.split('/');
+  name = decodeURIComponent(path[path.length - 1] || '').trim();
 
-    if (name && name !== '' && name !== 'fun') {
-      name = name.charAt(0).toUpperCase() + name.slice(1);
-      document.getElementById('message').innerHTML = `Hey ${name} 💖`;
-      document.getElementById('subtext').innerHTML = `You make everything around you bloom 🌷✨`;
-    }
+  // 2. Fallback: query parameter (?name=xyz)
+  if (!name || name === "fun") {
+    const params = new URLSearchParams(window.location.search);
+    name = params.get("name") || "";
+  }
 
-    // --- Floating hearts animation ---
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (3 + Math.random() * 2) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }
-    setInterval(createHeart, 300);
-  </script>
-</body>
+  // 3. Apply name if valid
+  if (name && name !== "fun") {
+    name = name.charAt(0).toUpperCase() + name.slice(1);
+
+    document.getElementById('message').innerHTML = `Hey ${name} 💖`;
+    document.getElementById('subtext').innerHTML = `You make everything around you bloom 🌷✨`;
+  }
+
+  // --- Floating hearts animation ---
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(createHeart, 300);
+</script></body>
 </html>
