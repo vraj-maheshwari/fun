@@ -2,18 +2,15 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>Redirecting...</title>
+  <title>Loading...</title>
 
   <script>
-    // Save the full path (/xyz, /rahul, etc.)
-    sessionStorage.setItem("path", window.location.pathname);
+    // store full path like /fun/xyz
+    sessionStorage.setItem("redirectPath", window.location.pathname);
 
-    // Redirect to homepage so index.html loads
+    // go to base app
     window.location.replace("/fun/");
   </script>
 </head>
-
-<body>
-  <p>Redirecting...</p>
-</body>
+<body></body>
 </html>
